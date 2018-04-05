@@ -1,0 +1,26 @@
+﻿@model KurulTakipSistemi.Models.UyeDelete
+@{  ViewBag.Title = "Delete";
+    ViewBag.SolMenuIdUret = Model.kurulId;
+}
+<script>
+    $("#menu2").addClass("active");
+</script>
+<div>
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.kurulAdi)</dt>
+        <dd>@Html.DisplayFor(model => model.kurulAdi)</dd>
+        <dt>@Html.DisplayNameFor(model => model.isim)</dt>
+        <dd>@Html.DisplayFor(model => model.isim)</dd>
+        <dt>@Html.DisplayNameFor(model => model.mudurluk)</dt>
+        <dd>@Html.DisplayFor(model => model.mudurluk)</dd>
+        <dt>@Html.DisplayNameFor(model => model.kayitTarihi)</dt>
+        <dd>@Html.DisplayFor(model => model.kayitTarihi)</dd>
+    </dl>
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-default" /> |
+            @Html.ActionLink("Geri Git", "Index", "Uyeler", new { id = @Model.kurulId }, null)
+        </div>
+    }
+</div>

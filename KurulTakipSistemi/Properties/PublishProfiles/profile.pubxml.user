@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>D:\Kurul</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>07/15/2016 11:00:29</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.pdb">
+      <publishTime>07/15/2016 11:00:29</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>07/15/2016 10:50:34</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>07/15/2016 10:50:34</publishTime>
+    </File>
+    <File Include="bin/KurulTakipSistemi.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/KurulTakipSistemi.pdb">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>07/15/2016 10:44:32</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>07/15/2016 10:51:14</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>07/15/2016 10:44:31</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>07/15/2016 10:44:32</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>07/15/2016 10:53:41</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>07/15/2016 10:44:31</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Deployment.dll">
+      <publishTime>07/15/2016 10:44:32</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.dll">
+      <publishTime>07/15/2016 10:44:32</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Razor.dll">
+      <publishTime>07/15/2016 10:44:32</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>07/15/2016 11:00:29</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>07/18/2016 11:51:44</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>07/25/2016 11:02:17</publishTime>
+    </File>
+    <File Include="Content/dashboard.css">
+      <publishTime>07/26/2016 14:18:12</publishTime>
+    </File>
+    <File Include="Content/jquery-ui.css">
+      <publishTime>07/26/2016 14:18:12</publishTime>
+    </File>
+    <File Include="Content/s2-docs.css">
+      <publishTime>07/26/2016 11:10:55</publishTime>
+    </File>
+    <File Include="Content/select2.min.css">
+      <publishTime>07/20/2016 14:03:41</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>07/26/2016 14:14:49</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>07/15/2016 13:38:26</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>07/15/2016 13:38:26</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>07/15/2016 13:38:26</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>07/15/2016 13:38:26</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>07/15/2016 10:44:30</publishTime>
+    </File>
+    <File Include="Models/KurulEDModel.edmx.diagram">
+      <publishTime>10/14/2016 00:10:07</publishTime>
+    </File>
+    <File Include="Models/Model1.edmx.diagram">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Models/sp_GetSecilenKurulGenel_Result.cs">
+      <publishTime>07/21/2016 08:04:34</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>07/15/2016 13:38:27</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap-confirm-delete.js">
+      <publishTime>07/28/2016 09:07:07</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>07/15/2016 13:38:26</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>07/15/2016 13:38:26</publishTime>
+    </File>
+    <File Include="Scripts/deleteSettings.js">
+      <publishTime>07/27/2016 16:39:14</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.0.0.js">
+      <publishTime>07/20/2016 14:17:44</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.0.0.min.js">
+      <publishTime>07/20/2016 14:17:44</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.0.0.min.map">
+      <publishTime>07/20/2016 14:17:44</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.0.0.slim.js">
+      <publishTime>07/20/2016 14:17:44</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.0.0.slim.min.js">
+      <publishTime>07/20/2016 14:17:44</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.0.0.slim.min.map">
+      <publishTime>07/20/2016 14:17:44</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui.js">
+      <publishTime>07/26/2016 14:18:46</publishTime>
+    </File>
+    <File Include="Scripts/jquery.min.js">
+      <publishTime>07/20/2016 14:17:46</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.js">
+      <publishTime>07/15/2016 13:38:25</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>07/15/2016 13:38:25</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.js">
+      <publishTime>07/15/2016 13:38:26</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.min.js">
+      <publishTime>07/15/2016 13:38:26</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.6.2.js">
+      <publishTime>07/20/2016 14:17:44</publishTime>
+    </File>
+    <File Include="Scripts/MyScript.js">
+      <publishTime>03/14/2018 01:01:45</publishTime>
+    </File>
+    <File Include="Scripts/select2.full.js">
+      <publishTime>07/20/2016 14:24:55</publishTime>
+    </File>
+    <File Include="Views/Aksiyonlar/Create.cshtml">
+      <publishTime>07/27/2016 09:17:01</publishTime>
+    </File>
+    <File Include="Views/Aksiyonlar/Delete.cshtml">
+      <publishTime>07/27/2016 09:17:32</publishTime>
+    </File>
+    <File Include="Views/Aksiyonlar/Edit.cshtml">
+      <publishTime>07/27/2016 09:17:23</publishTime>
+    </File>
+    <File Include="Views/Aksiyonlar/Index.cshtml">
+      <publishTime>03/14/2018 01:21:47</publishTime>
+    </File>
+    <File Include="Views/Dosyalar/Create.cshtml">
+      <publishTime>08/19/2016 01:08:51</publishTime>
+    </File>
+    <File Include="Views/Dosyalar/Delete.cshtml">
+      <publishTime>08/19/2016 01:08:25</publishTime>
+    </File>
+    <File Include="Views/Dosyalar/Edit.cshtml">
+      <publishTime>08/19/2016 01:06:49</publishTime>
+    </File>
+    <File Include="Views/Dosyalar/Index.cshtml">
+      <publishTime>08/22/2016 00:55:12</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/Kurul/Create.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/Kurul/Delete.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/Kurul/Details.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/Kurul/Edit.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/Kurul/GenelBilgiler.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/Kurul/Index.cshtml">
+      <publishTime>08/19/2016 00:32:36</publishTime>
+    </File>
+    <File Include="Views/Kurul/SecilenKurul.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/SecilenKurul/GenelBilgiler.cshtml">
+      <publishTime>07/25/2016 15:01:30</publishTime>
+    </File>
+    <File Include="Views/SecilenKurul/Index.cshtml">
+      <publishTime>08/22/2016 00:53:03</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>07/25/2016 14:58:53</publishTime>
+    </File>
+    <File Include="Views/Shared/_LayoutYeniTasarim.cshtml">
+      <publishTime>03/14/2018 01:07:08</publishTime>
+    </File>
+    <File Include="Views/Uyeler/Create.cshtml">
+      <publishTime>08/19/2016 00:53:53</publishTime>
+    </File>
+    <File Include="Views/Uyeler/Delete.cshtml">
+      <publishTime>08/19/2016 00:55:22</publishTime>
+    </File>
+    <File Include="Views/Uyeler/Index.cshtml">
+      <publishTime>03/14/2018 01:19:28</publishTime>
+    </File>
+    <File Include="Views/web.config">
+      <publishTime>07/27/2016 14:50:04</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>07/26/2016 13:44:30</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>03/14/2018 01:22:03</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

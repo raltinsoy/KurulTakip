@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="656d65c897a74a9f9492c209f696ea80" Name="Diagram1" ZoomLevel="89">
+        <EntityTypeShape EntityType="Model.Aksiyonlar" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Dosyalar" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Katilim" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Kurullar" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Personel" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Uyeler" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_Aksiyonlar_Kurullar" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Dosyalar_Kurullar1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Katilim_Kurullar" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Uyeler_Kurullar" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.KurullarView" Width="1.5" PointX="5.375" PointY="3.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

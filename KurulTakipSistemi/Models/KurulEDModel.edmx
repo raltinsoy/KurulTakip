@@ -1,0 +1,663 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Aksiyonlar">
+          <Key>
+            <PropertyRef Name="AksiyonID" />
+          </Key>
+          <Property Name="AksiyonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KurulID" Type="int" Nullable="false" />
+          <Property Name="KriterNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="GorusulenKonu" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MevcutDurumu" Type="nvarchar(max)" />
+          <Property Name="SorumluPersNo" Type="int" Nullable="false" />
+          <Property Name="GundemeTarihi" Type="datetime" />
+          <Property Name="HedefTarihi" Type="datetime" />
+          <Property Name="IsBitisTarihi" Type="datetime" />
+          <Property Name="KayitSahibiPersNo" Type="int" />
+          <Property Name="SorumluPersoneller" Type="nvarchar" MaxLength="150" />
+          <Property Name="AksiyonSonucu" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Gelisme" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Sonuc" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Dosyalar">
+          <Key>
+            <PropertyRef Name="DosyaID" />
+          </Key>
+          <Property Name="DosyaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KurulID" Type="int" Nullable="false" />
+          <Property Name="DosyaAdi" Type="nvarchar" MaxLength="300" />
+          <Property Name="DosyaYeniAdi" Type="nvarchar" MaxLength="100" />
+          <Property Name="YukleyenPersNo" Type="int" Nullable="false" />
+          <Property Name="Aciklama" Type="nvarchar" MaxLength="100" />
+          <Property Name="Tur" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Katilim">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KurulID" Type="int" Nullable="false" />
+          <Property Name="Tarih" Type="datetime" Nullable="false" />
+          <Property Name="PerNr" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Katildi" Type="bit" />
+        </EntityType>
+        <EntityType Name="Kurullar">
+          <Key>
+            <PropertyRef Name="KurulID" />
+          </Key>
+          <Property Name="KurulID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Adi" Type="nvarchar" MaxLength="100" />
+          <Property Name="Sponsoru" Type="int" Nullable="false" />
+          <Property Name="Baskani" Type="int" Nullable="false" />
+          <Property Name="Raportor" Type="int" Nullable="false" />
+          <Property Name="Amac" Type="nvarchar(max)" />
+          <Property Name="KayitTarihi" Type="datetime" Nullable="false" />
+          <Property Name="Gundem" Type="nvarchar(max)" />
+          <Property Name="SiraNo" Type="int" />
+          <Property Name="BasTarihi" Type="datetime" />
+          <Property Name="Sorumluluklar" Type="nvarchar(max)" />
+          <Property Name="IlgiliUstSurec" Type="nvarchar" MaxLength="200" />
+          <Property Name="Politika" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Personel">
+          <Key>
+            <PropertyRef Name="SicilNo" />
+          </Key>
+          <Property Name="SicilNo" Type="int" Nullable="false" />
+          <Property Name="AdSoyad" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Mudurluk" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Yoneticilik" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Uyeler">
+          <Key>
+            <PropertyRef Name="UyeID" />
+          </Key>
+          <Property Name="UyeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KurulID" Type="int" Nullable="false" />
+          <Property Name="PersNo" Type="int" Nullable="false" />
+          <Property Name="PersMi" Type="bit" />
+          <Property Name="Aktif" Type="bit" />
+          <Property Name="UyeCikisTarihi" Type="datetime" />
+          <Property Name="UyeOlusTarihi" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'db1013233-kurultakip.dbo.KurullarView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="KurullarView">
+          <Key>
+            <PropertyRef Name="KurulID" />
+          </Key>
+          <Property Name="KurulID" Type="int" Nullable="false" />
+          <Property Name="KurulAdi" Type="nvarchar" MaxLength="100" />
+          <Property Name="RaportorAdSoyad" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <Association Name="FK_Aksiyonlar_Kurullar">
+          <End Role="Kurullar" Type="Self.Kurullar" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Aksiyonlar" Type="Self.Aksiyonlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kurullar">
+              <PropertyRef Name="KurulID" />
+            </Principal>
+            <Dependent Role="Aksiyonlar">
+              <PropertyRef Name="KurulID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dosyalar_Kurullar1">
+          <End Role="Kurullar" Type="Self.Kurullar" Multiplicity="1" />
+          <End Role="Dosyalar" Type="Self.Dosyalar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kurullar">
+              <PropertyRef Name="KurulID" />
+            </Principal>
+            <Dependent Role="Dosyalar">
+              <PropertyRef Name="KurulID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Katilim_Kurullar">
+          <End Role="Kurullar" Type="Self.Kurullar" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Katilim" Type="Self.Katilim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kurullar">
+              <PropertyRef Name="KurulID" />
+            </Principal>
+            <Dependent Role="Katilim">
+              <PropertyRef Name="KurulID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Uyeler_Kurullar">
+          <End Role="Kurullar" Type="Self.Kurullar" Multiplicity="1" />
+          <End Role="Uyeler" Type="Self.Uyeler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kurullar">
+              <PropertyRef Name="KurulID" />
+            </Principal>
+            <Dependent Role="Uyeler">
+              <PropertyRef Name="KurulID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_GetDosyaBilgisi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetSecilenKurulAksiyon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetSecilenKurulDosya" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetSecilenKurulGenel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetSecilenKurulUyeleri" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_UyelerEkle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UyeID" Type="int" Mode="In" />
+          <Parameter Name="KurulID" Type="int" Mode="In" />
+          <Parameter Name="PersNo" Type="int" Mode="In" />
+          <Parameter Name="PersMi" Type="bit" Mode="In" />
+          <Parameter Name="Aktif" Type="bit" Mode="In" />
+          <Parameter Name="UyeCikisTarihi" Type="datetime" Mode="In" />
+          <Parameter Name="UyeOlusTarihi" Type="datetime" Mode="In" />
+        </Function>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Aksiyonlar" EntityType="Self.Aksiyonlar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dosyalar" EntityType="Self.Dosyalar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Katilim" EntityType="Self.Katilim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kurullar" EntityType="Self.Kurullar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personel" EntityType="Self.Personel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Uyeler" EntityType="Self.Uyeler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KurullarView" EntityType="Self.KurullarView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [KurullarView].[KurulID] AS [KurulID], 
+    [KurullarView].[KurulAdi] AS [KurulAdi], 
+    [KurullarView].[RaportorAdSoyad] AS [RaportorAdSoyad]
+    FROM [dbo].[KurullarView] AS [KurullarView]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Aksiyonlar_Kurullar" Association="Self.FK_Aksiyonlar_Kurullar">
+            <End Role="Kurullar" EntitySet="Kurullar" />
+            <End Role="Aksiyonlar" EntitySet="Aksiyonlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dosyalar_Kurullar1" Association="Self.FK_Dosyalar_Kurullar1">
+            <End Role="Kurullar" EntitySet="Kurullar" />
+            <End Role="Dosyalar" EntitySet="Dosyalar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Katilim_Kurullar" Association="Self.FK_Katilim_Kurullar">
+            <End Role="Kurullar" EntitySet="Kurullar" />
+            <End Role="Katilim" EntitySet="Katilim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Uyeler_Kurullar" Association="Self.FK_Uyeler_Kurullar">
+            <End Role="Kurullar" EntitySet="Kurullar" />
+            <End Role="Uyeler" EntitySet="Uyeler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Aksiyonlar">
+          <Key>
+            <PropertyRef Name="AksiyonID" />
+          </Key>
+          <Property Name="AksiyonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KurulID" Type="Int32" Nullable="false" />
+          <Property Name="KriterNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GorusulenKonu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MevcutDurumu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SorumluPersNo" Type="Int32" Nullable="false" />
+          <Property Name="GundemeTarihi" Type="DateTime" Precision="3" />
+          <Property Name="HedefTarihi" Type="DateTime" Precision="3" />
+          <Property Name="IsBitisTarihi" Type="DateTime" Precision="3" />
+          <Property Name="KayitSahibiPersNo" Type="Int32" />
+          <Property Name="SorumluPersoneller" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="AksiyonSonucu" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Gelisme" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Sonuc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kurullar" Relationship="Self.FK_Aksiyonlar_Kurullar" FromRole="Aksiyonlar" ToRole="Kurullar" />
+        </EntityType>
+        <EntityType Name="Dosyalar">
+          <Key>
+            <PropertyRef Name="DosyaID" />
+          </Key>
+          <Property Name="DosyaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KurulID" Type="Int32" Nullable="false" />
+          <Property Name="DosyaAdi" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="DosyaYeniAdi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="YukleyenPersNo" Type="Int32" Nullable="false" />
+          <Property Name="Aciklama" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Tur" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Kurullar" Relationship="Self.FK_Dosyalar_Kurullar1" FromRole="Dosyalar" ToRole="Kurullar" />
+        </EntityType>
+        <EntityType Name="Katilim">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KurulID" Type="Int32" Nullable="false" />
+          <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PerNr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Katildi" Type="Boolean" />
+          <NavigationProperty Name="Kurullar" Relationship="Self.FK_Katilim_Kurullar" FromRole="Katilim" ToRole="Kurullar" />
+        </EntityType>
+        <EntityType Name="Kurullar">
+          <Key>
+            <PropertyRef Name="KurulID" />
+          </Key>
+          <Property Name="KurulID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Sponsoru" Type="Int32" Nullable="false" />
+          <Property Name="Baskani" Type="Int32" Nullable="false" />
+          <Property Name="Raportor" Type="Int32" Nullable="false" />
+          <Property Name="Amac" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KayitTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Gundem" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SiraNo" Type="Int32" />
+          <Property Name="BasTarihi" Type="DateTime" Precision="3" />
+          <Property Name="Sorumluluklar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IlgiliUstSurec" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Politika" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Aksiyonlar" Relationship="Self.FK_Aksiyonlar_Kurullar" FromRole="Kurullar" ToRole="Aksiyonlar" />
+          <NavigationProperty Name="Dosyalar" Relationship="Self.FK_Dosyalar_Kurullar1" FromRole="Kurullar" ToRole="Dosyalar" />
+          <NavigationProperty Name="Katilim" Relationship="Self.FK_Katilim_Kurullar" FromRole="Kurullar" ToRole="Katilim" />
+          <NavigationProperty Name="Uyeler" Relationship="Self.FK_Uyeler_Kurullar" FromRole="Kurullar" ToRole="Uyeler" />
+        </EntityType>
+        <EntityType Name="Personel">
+          <Key>
+            <PropertyRef Name="SicilNo" />
+          </Key>
+          <Property Name="SicilNo" Type="Int32" Nullable="false" />
+          <Property Name="AdSoyad" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mudurluk" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Yoneticilik" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Uyeler">
+          <Key>
+            <PropertyRef Name="UyeID" />
+          </Key>
+          <Property Name="UyeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KurulID" Type="Int32" Nullable="false" />
+          <Property Name="PersNo" Type="Int32" Nullable="false" />
+          <Property Name="PersMi" Type="Boolean" />
+          <Property Name="Aktif" Type="Boolean" />
+          <Property Name="UyeCikisTarihi" Type="DateTime" Precision="3" />
+          <Property Name="UyeOlusTarihi" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Kurullar" Relationship="Self.FK_Uyeler_Kurullar" FromRole="Uyeler" ToRole="Kurullar" />
+        </EntityType>
+        <Association Name="FK_Aksiyonlar_Kurullar">
+          <End Role="Kurullar" Type="Self.Kurullar" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Aksiyonlar" Type="Self.Aksiyonlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kurullar">
+              <PropertyRef Name="KurulID" />
+            </Principal>
+            <Dependent Role="Aksiyonlar">
+              <PropertyRef Name="KurulID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dosyalar_Kurullar1">
+          <End Role="Kurullar" Type="Self.Kurullar" Multiplicity="1" />
+          <End Role="Dosyalar" Type="Self.Dosyalar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kurullar">
+              <PropertyRef Name="KurulID" />
+            </Principal>
+            <Dependent Role="Dosyalar">
+              <PropertyRef Name="KurulID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Katilim_Kurullar">
+          <End Role="Kurullar" Type="Self.Kurullar" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Katilim" Type="Self.Katilim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kurullar">
+              <PropertyRef Name="KurulID" />
+            </Principal>
+            <Dependent Role="Katilim">
+              <PropertyRef Name="KurulID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Uyeler_Kurullar">
+          <End Role="Kurullar" Type="Self.Kurullar" Multiplicity="1" />
+          <End Role="Uyeler" Type="Self.Uyeler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kurullar">
+              <PropertyRef Name="KurulID" />
+            </Principal>
+            <Dependent Role="Uyeler">
+              <PropertyRef Name="KurulID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KurullarEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Aksiyonlar" EntityType="Self.Aksiyonlar" />
+          <EntitySet Name="Dosyalar" EntityType="Self.Dosyalar" />
+          <EntitySet Name="Katilim" EntityType="Self.Katilim" />
+          <EntitySet Name="Kurullar" EntityType="Self.Kurullar" />
+          <EntitySet Name="Personel" EntityType="Self.Personel" />
+          <EntitySet Name="Uyeler" EntityType="Self.Uyeler" />
+          <AssociationSet Name="FK_Aksiyonlar_Kurullar" Association="Self.FK_Aksiyonlar_Kurullar">
+            <End Role="Kurullar" EntitySet="Kurullar" />
+            <End Role="Aksiyonlar" EntitySet="Aksiyonlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dosyalar_Kurullar1" Association="Self.FK_Dosyalar_Kurullar1">
+            <End Role="Kurullar" EntitySet="Kurullar" />
+            <End Role="Dosyalar" EntitySet="Dosyalar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Katilim_Kurullar" Association="Self.FK_Katilim_Kurullar">
+            <End Role="Kurullar" EntitySet="Kurullar" />
+            <End Role="Katilim" EntitySet="Katilim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Uyeler_Kurullar" Association="Self.FK_Uyeler_Kurullar">
+            <End Role="Kurullar" EntitySet="Kurullar" />
+            <End Role="Uyeler" EntitySet="Uyeler" />
+          </AssociationSet>
+          <FunctionImport Name="sp_GetSecilenKurulUyeleri" ReturnType="Collection(Model.sp_GetSecilenKurulUyeleri_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="KurullarView" EntityType="Model.KurullarView" />
+          <FunctionImport Name="sp_GetSecilenKurulGenel" ReturnType="Collection(Model.sp_GetSecilenKurulGenel_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_UyelerEkle" ReturnType="Collection(Int32)">
+            <Parameter Name="UyeID" Mode="In" Type="Int32" />
+            <Parameter Name="KurulID" Mode="In" Type="Int32" />
+            <Parameter Name="PersNo" Mode="In" Type="Int32" />
+            <Parameter Name="PersMi" Mode="In" Type="Boolean" />
+            <Parameter Name="Aktif" Mode="In" Type="Boolean" />
+            <Parameter Name="UyeCikisTarihi" Mode="In" Type="DateTime" />
+            <Parameter Name="UyeOlusTarihi" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetDosyaBilgisi" ReturnType="Collection(Model.sp_GetDosyaBilgisi_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetSecilenKurulAksiyon" ReturnType="Collection(Model.sp_GetSecilenKurulAksiyon_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetSecilenKurulDosya" ReturnType="Collection(Model.sp_GetSecilenKurulDosya_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sp_GetSecilenKurulUyeleri_Result">
+          <Property Type="Int32" Name="KurulID" Nullable="false" />
+          <Property Type="Int32" Name="UyeID" Nullable="false" />
+          <Property Type="String" Name="AdSoyad" Nullable="false" MaxLength="150" />
+          <Property Type="Boolean" Name="Aktif" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="KurullarView">
+          <Key>
+            <PropertyRef Name="KurulID" />
+          </Key>
+          <Property Name="KurulID" Type="Int32" Nullable="false" />
+          <Property Name="KurulAdi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RaportorAdSoyad" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="sp_GetSecilenKurulGenel_Result">
+          <Property Type="Int32" Name="KurulID" Nullable="false" />
+          <Property Type="String" Name="BaskanAdSoyad" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="RaportorAdSoyad" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="SponsorAdSoyad" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="BasTarihi" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Sorumluluklar" Nullable="true" />
+          <Property Type="String" Name="IlgiliUstSurec" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Politika" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Adi" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Amac" Nullable="true" />
+          <Property Type="String" Name="Gundem" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetDosyaBilgisi_Result">
+          <Property Type="Int32" Name="DosyaID" Nullable="false" />
+          <Property Type="Int32" Name="KurulID" Nullable="false" />
+          <Property Type="String" Name="DosyaAdi" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="Aciklama" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Tur" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="DosyaYeniAdi" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="YukleyenPersNo" Nullable="false" />
+          <Property Type="String" Name="AdSoyad" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="KurulAdi" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_GetSecilenKurulAksiyon_Result">
+          <Property Type="String" Name="KriterNo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="GorusulenKonu" Nullable="false" />
+          <Property Type="String" Name="MevcutDurumu" Nullable="true" />
+          <Property Type="Int32" Name="SorumluPersNo" Nullable="false" />
+          <Property Type="DateTime" Name="GundemeTarihi" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="HedefTarihi" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="IsBitisTarihi" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="KayitSahibiPersNo" Nullable="true" />
+          <Property Type="String" Name="SorumluPersoneller" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="AksiyonSonucu" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="Gelisme" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="Sonuc" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="SorumluPers" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="PlanKurulu" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="AksiyonID" Nullable="false" />
+          <Property Type="Int32" Name="KurulID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_GetSecilenKurulDosya_Result">
+          <Property Type="Int32" Name="KurulID" Nullable="false" />
+          <Property Type="Int32" Name="DosyaID" Nullable="false" />
+          <Property Type="String" Name="YukleyenKisi" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Aciklama" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DosyaAdi" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="DosyaYeniAdi" Nullable="true" MaxLength="100" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="KurullarEntities">
+          <EntitySetMapping Name="Aksiyonlar">
+            <EntityTypeMapping TypeName="Model.Aksiyonlar">
+              <MappingFragment StoreEntitySet="Aksiyonlar">
+                <ScalarProperty Name="AksiyonID" ColumnName="AksiyonID" />
+                <ScalarProperty Name="KurulID" ColumnName="KurulID" />
+                <ScalarProperty Name="KriterNo" ColumnName="KriterNo" />
+                <ScalarProperty Name="GorusulenKonu" ColumnName="GorusulenKonu" />
+                <ScalarProperty Name="MevcutDurumu" ColumnName="MevcutDurumu" />
+                <ScalarProperty Name="SorumluPersNo" ColumnName="SorumluPersNo" />
+                <ScalarProperty Name="GundemeTarihi" ColumnName="GundemeTarihi" />
+                <ScalarProperty Name="HedefTarihi" ColumnName="HedefTarihi" />
+                <ScalarProperty Name="IsBitisTarihi" ColumnName="IsBitisTarihi" />
+                <ScalarProperty Name="KayitSahibiPersNo" ColumnName="KayitSahibiPersNo" />
+                <ScalarProperty Name="SorumluPersoneller" ColumnName="SorumluPersoneller" />
+                <ScalarProperty Name="AksiyonSonucu" ColumnName="AksiyonSonucu" />
+                <ScalarProperty Name="Gelisme" ColumnName="Gelisme" />
+                <ScalarProperty Name="Sonuc" ColumnName="Sonuc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dosyalar">
+            <EntityTypeMapping TypeName="Model.Dosyalar">
+              <MappingFragment StoreEntitySet="Dosyalar">
+                <ScalarProperty Name="DosyaID" ColumnName="DosyaID" />
+                <ScalarProperty Name="KurulID" ColumnName="KurulID" />
+                <ScalarProperty Name="DosyaAdi" ColumnName="DosyaAdi" />
+                <ScalarProperty Name="DosyaYeniAdi" ColumnName="DosyaYeniAdi" />
+                <ScalarProperty Name="YukleyenPersNo" ColumnName="YukleyenPersNo" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="Tur" ColumnName="Tur" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Katilim">
+            <EntityTypeMapping TypeName="Model.Katilim">
+              <MappingFragment StoreEntitySet="Katilim">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="KurulID" ColumnName="KurulID" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="PerNr" ColumnName="PerNr" />
+                <ScalarProperty Name="Katildi" ColumnName="Katildi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kurullar">
+            <EntityTypeMapping TypeName="Model.Kurullar">
+              <MappingFragment StoreEntitySet="Kurullar">
+                <ScalarProperty Name="KurulID" ColumnName="KurulID" />
+                <ScalarProperty Name="Adi" ColumnName="Adi" />
+                <ScalarProperty Name="Sponsoru" ColumnName="Sponsoru" />
+                <ScalarProperty Name="Baskani" ColumnName="Baskani" />
+                <ScalarProperty Name="Raportor" ColumnName="Raportor" />
+                <ScalarProperty Name="Amac" ColumnName="Amac" />
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+                <ScalarProperty Name="Gundem" ColumnName="Gundem" />
+                <ScalarProperty Name="SiraNo" ColumnName="SiraNo" />
+                <ScalarProperty Name="BasTarihi" ColumnName="BasTarihi" />
+                <ScalarProperty Name="Sorumluluklar" ColumnName="Sorumluluklar" />
+                <ScalarProperty Name="IlgiliUstSurec" ColumnName="IlgiliUstSurec" />
+                <ScalarProperty Name="Politika" ColumnName="Politika" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personel">
+            <EntityTypeMapping TypeName="Model.Personel">
+              <MappingFragment StoreEntitySet="Personel">
+                <ScalarProperty Name="SicilNo" ColumnName="SicilNo" />
+                <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+                <ScalarProperty Name="Mudurluk" ColumnName="Mudurluk" />
+                <ScalarProperty Name="Yoneticilik" ColumnName="Yoneticilik" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Uyeler">
+            <EntityTypeMapping TypeName="Model.Uyeler">
+              <MappingFragment StoreEntitySet="Uyeler">
+                <ScalarProperty Name="UyeID" ColumnName="UyeID" />
+                <ScalarProperty Name="KurulID" ColumnName="KurulID" />
+                <ScalarProperty Name="PersNo" ColumnName="PersNo" />
+                <ScalarProperty Name="PersMi" ColumnName="PersMi" />
+                <ScalarProperty Name="Aktif" ColumnName="Aktif" />
+                <ScalarProperty Name="UyeCikisTarihi" ColumnName="UyeCikisTarihi" />
+                <ScalarProperty Name="UyeOlusTarihi" ColumnName="UyeOlusTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetSecilenKurulUyeleri" FunctionName="Model.Store.sp_GetSecilenKurulUyeleri">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.sp_GetSecilenKurulUyeleri_Result">
+                <ScalarProperty Name="KurulID" ColumnName="KurulID" />
+                <ScalarProperty Name="UyeID" ColumnName="UyeID" />
+                <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+                <ScalarProperty Name="Aktif" ColumnName="Aktif" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="KurullarView">
+            <EntityTypeMapping TypeName="Model.KurullarView">
+              <MappingFragment StoreEntitySet="KurullarView">
+                <ScalarProperty Name="RaportorAdSoyad" ColumnName="RaportorAdSoyad" />
+                <ScalarProperty Name="KurulAdi" ColumnName="KurulAdi" />
+                <ScalarProperty Name="KurulID" ColumnName="KurulID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetSecilenKurulGenel" FunctionName="Model.Store.sp_GetSecilenKurulGenel">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.sp_GetSecilenKurulGenel_Result">
+                <ScalarProperty Name="KurulID" ColumnName="KurulID" />
+                <ScalarProperty Name="BaskanAdSoyad" ColumnName="BaskanAdSoyad" />
+                <ScalarProperty Name="RaportorAdSoyad" ColumnName="RaportorAdSoyad" />
+                <ScalarProperty Name="SponsorAdSoyad" ColumnName="SponsorAdSoyad" />
+                <ScalarProperty Name="BasTarihi" ColumnName="BasTarihi" />
+                <ScalarProperty Name="Sorumluluklar" ColumnName="Sorumluluklar" />
+                <ScalarProperty Name="IlgiliUstSurec" ColumnName="IlgiliUstSurec" />
+                <ScalarProperty Name="Politika" ColumnName="Politika" />
+                <ScalarProperty Name="Adi" ColumnName="Adi" />
+                <ScalarProperty Name="Amac" ColumnName="Amac" />
+                <ScalarProperty Name="Gundem" ColumnName="Gundem" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_UyelerEkle" FunctionName="Model.Store.sp_UyelerEkle" />
+          <FunctionImportMapping FunctionImportName="sp_GetDosyaBilgisi" FunctionName="Model.Store.sp_GetDosyaBilgisi">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.sp_GetDosyaBilgisi_Result">
+                <ScalarProperty Name="DosyaID" ColumnName="DosyaID" />
+                <ScalarProperty Name="KurulID" ColumnName="KurulID" />
+                <ScalarProperty Name="DosyaAdi" ColumnName="DosyaAdi" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="Tur" ColumnName="Tur" />
+                <ScalarProperty Name="DosyaYeniAdi" ColumnName="DosyaYeniAdi" />
+                <ScalarProperty Name="YukleyenPersNo" ColumnName="YukleyenPersNo" />
+                <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+                <ScalarProperty Name="KurulAdi" ColumnName="KurulAdi" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetSecilenKurulAksiyon" FunctionName="Model.Store.sp_GetSecilenKurulAksiyon">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.sp_GetSecilenKurulAksiyon_Result">
+                <ScalarProperty Name="KriterNo" ColumnName="KriterNo" />
+                <ScalarProperty Name="GorusulenKonu" ColumnName="GorusulenKonu" />
+                <ScalarProperty Name="MevcutDurumu" ColumnName="MevcutDurumu" />
+                <ScalarProperty Name="SorumluPersNo" ColumnName="SorumluPersNo" />
+                <ScalarProperty Name="GundemeTarihi" ColumnName="GundemeTarihi" />
+                <ScalarProperty Name="HedefTarihi" ColumnName="HedefTarihi" />
+                <ScalarProperty Name="IsBitisTarihi" ColumnName="IsBitisTarihi" />
+                <ScalarProperty Name="KayitSahibiPersNo" ColumnName="KayitSahibiPersNo" />
+                <ScalarProperty Name="SorumluPersoneller" ColumnName="SorumluPersoneller" />
+                <ScalarProperty Name="AksiyonSonucu" ColumnName="AksiyonSonucu" />
+                <ScalarProperty Name="Gelisme" ColumnName="Gelisme" />
+                <ScalarProperty Name="Sonuc" ColumnName="Sonuc" />
+                <ScalarProperty Name="SorumluPers" ColumnName="SorumluPers" />
+                <ScalarProperty Name="PlanKurulu" ColumnName="PlanKurulu" />
+                <ScalarProperty Name="AksiyonID" ColumnName="AksiyonID" />
+                <ScalarProperty Name="KurulID" ColumnName="KurulID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetSecilenKurulDosya" FunctionName="Model.Store.sp_GetSecilenKurulDosya">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.sp_GetSecilenKurulDosya_Result">
+                <ScalarProperty Name="KurulID" ColumnName="KurulID" />
+                <ScalarProperty Name="DosyaID" ColumnName="DosyaID" />
+                <ScalarProperty Name="YukleyenKisi" ColumnName="YukleyenKisi" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="DosyaAdi" ColumnName="DosyaAdi" />
+                <ScalarProperty Name="DosyaYeniAdi" ColumnName="DosyaYeniAdi" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

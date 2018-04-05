@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="KurullarEntities">
+    <EntitySetMapping Name="Aksiyonlar">
+      <EntityTypeMapping TypeName="Model.Aksiyonlar">
+        <MappingFragment StoreEntitySet="Aksiyonlar">
+          <ScalarProperty Name="AksiyonID" ColumnName="AksiyonID" />
+          <ScalarProperty Name="KurulID" ColumnName="KurulID" />
+          <ScalarProperty Name="KriterNo" ColumnName="KriterNo" />
+          <ScalarProperty Name="GorusulenKonu" ColumnName="GorusulenKonu" />
+          <ScalarProperty Name="MevcutDurumu" ColumnName="MevcutDurumu" />
+          <ScalarProperty Name="SorumluPersNo" ColumnName="SorumluPersNo" />
+          <ScalarProperty Name="GundemeTarihi" ColumnName="GundemeTarihi" />
+          <ScalarProperty Name="HedefTarihi" ColumnName="HedefTarihi" />
+          <ScalarProperty Name="IsBitisTarihi" ColumnName="IsBitisTarihi" />
+          <ScalarProperty Name="KayitSahibiPersNo" ColumnName="KayitSahibiPersNo" />
+          <ScalarProperty Name="SorumluPersoneller" ColumnName="SorumluPersoneller" />
+          <ScalarProperty Name="AksiyonSonucu" ColumnName="AksiyonSonucu" />
+          <ScalarProperty Name="Gelisme" ColumnName="Gelisme" />
+          <ScalarProperty Name="Sonuc" ColumnName="Sonuc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dosyalar">
+      <EntityTypeMapping TypeName="Model.Dosyalar">
+        <MappingFragment StoreEntitySet="Dosyalar">
+          <ScalarProperty Name="DosyaID" ColumnName="DosyaID" />
+          <ScalarProperty Name="KurulID" ColumnName="KurulID" />
+          <ScalarProperty Name="DosyaAdi" ColumnName="DosyaAdi" />
+          <ScalarProperty Name="DosyaYeniAdi" ColumnName="DosyaYeniAdi" />
+          <ScalarProperty Name="YukleyenPersNo" ColumnName="YukleyenPersNo" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="Tur" ColumnName="Tur" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Katilim">
+      <EntityTypeMapping TypeName="Model.Katilim">
+        <MappingFragment StoreEntitySet="Katilim">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="KurulID" ColumnName="KurulID" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+          <ScalarProperty Name="PerNr" ColumnName="PerNr" />
+          <ScalarProperty Name="Katildi" ColumnName="Katildi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kurullar">
+      <EntityTypeMapping TypeName="Model.Kurullar">
+        <MappingFragment StoreEntitySet="Kurullar">
+          <ScalarProperty Name="KurulID" ColumnName="KurulID" />
+          <ScalarProperty Name="Adi" ColumnName="Adi" />
+          <ScalarProperty Name="Sponsoru" ColumnName="Sponsoru" />
+          <ScalarProperty Name="Baskani" ColumnName="Baskani" />
+          <ScalarProperty Name="Raportor" ColumnName="Raportor" />
+          <ScalarProperty Name="Amac" ColumnName="Amac" />
+          <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+          <ScalarProperty Name="Gundem" ColumnName="Gundem" />
+          <ScalarProperty Name="SiraNo" ColumnName="SiraNo" />
+          <ScalarProperty Name="BasTarihi" ColumnName="BasTarihi" />
+          <ScalarProperty Name="Sorumluluklar" ColumnName="Sorumluluklar" />
+          <ScalarProperty Name="IlgiliUstSurec" ColumnName="IlgiliUstSurec" />
+          <ScalarProperty Name="Politika" ColumnName="Politika" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Personel">
+      <EntityTypeMapping TypeName="Model.Personel">
+        <MappingFragment StoreEntitySet="Personel">
+          <ScalarProperty Name="SicilNo" ColumnName="SicilNo" />
+          <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+          <ScalarProperty Name="Mudurluk" ColumnName="Mudurluk" />
+          <ScalarProperty Name="Yoneticilik" ColumnName="Yoneticilik" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Uyeler">
+      <EntityTypeMapping TypeName="Model.Uyeler">
+        <MappingFragment StoreEntitySet="Uyeler">
+          <ScalarProperty Name="UyeID" ColumnName="UyeID" />
+          <ScalarProperty Name="KurulID" ColumnName="KurulID" />
+          <ScalarProperty Name="PersNo" ColumnName="PersNo" />
+          <ScalarProperty Name="PersMi" ColumnName="PersMi" />
+          <ScalarProperty Name="Aktif" ColumnName="Aktif" />
+          <ScalarProperty Name="UyeCikisTarihi" ColumnName="UyeCikisTarihi" />
+          <ScalarProperty Name="UyeOlusTarihi" ColumnName="UyeOlusTarihi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetSecilenKurulUyeleri" FunctionName="Model.Store.sp_GetSecilenKurulUyeleri">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Model.sp_GetSecilenKurulUyeleri_Result">
+          <ScalarProperty Name="KurulID" ColumnName="KurulID" />
+          <ScalarProperty Name="UyeID" ColumnName="UyeID" />
+          <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+          <ScalarProperty Name="Aktif" ColumnName="Aktif" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="KurullarView">
+      <EntityTypeMapping TypeName="Model.KurullarView">
+        <MappingFragment StoreEntitySet="KurullarView">
+          <ScalarProperty Name="RaportorAdSoyad" ColumnName="RaportorAdSoyad" />
+          <ScalarProperty Name="KurulAdi" ColumnName="KurulAdi" />
+          <ScalarProperty Name="KurulID" ColumnName="KurulID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetSecilenKurulGenel" FunctionName="Model.Store.sp_GetSecilenKurulGenel">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Model.sp_GetSecilenKurulGenel_Result">
+          <ScalarProperty Name="KurulID" ColumnName="KurulID" />
+          <ScalarProperty Name="BaskanAdSoyad" ColumnName="BaskanAdSoyad" />
+          <ScalarProperty Name="RaportorAdSoyad" ColumnName="RaportorAdSoyad" />
+          <ScalarProperty Name="SponsorAdSoyad" ColumnName="SponsorAdSoyad" />
+          <ScalarProperty Name="BasTarihi" ColumnName="BasTarihi" />
+          <ScalarProperty Name="Sorumluluklar" ColumnName="Sorumluluklar" />
+          <ScalarProperty Name="IlgiliUstSurec" ColumnName="IlgiliUstSurec" />
+          <ScalarProperty Name="Politika" ColumnName="Politika" />
+          <ScalarProperty Name="Adi" ColumnName="Adi" />
+          <ScalarProperty Name="Amac" ColumnName="Amac" />
+          <ScalarProperty Name="Gundem" ColumnName="Gundem" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_UyelerEkle" FunctionName="Model.Store.sp_UyelerEkle" />
+    <FunctionImportMapping FunctionImportName="sp_GetDosyaBilgisi" FunctionName="Model.Store.sp_GetDosyaBilgisi">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Model.sp_GetDosyaBilgisi_Result">
+          <ScalarProperty Name="DosyaID" ColumnName="DosyaID" />
+          <ScalarProperty Name="KurulID" ColumnName="KurulID" />
+          <ScalarProperty Name="DosyaAdi" ColumnName="DosyaAdi" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="Tur" ColumnName="Tur" />
+          <ScalarProperty Name="DosyaYeniAdi" ColumnName="DosyaYeniAdi" />
+          <ScalarProperty Name="YukleyenPersNo" ColumnName="YukleyenPersNo" />
+          <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+          <ScalarProperty Name="KurulAdi" ColumnName="KurulAdi" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetSecilenKurulAksiyon" FunctionName="Model.Store.sp_GetSecilenKurulAksiyon">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Model.sp_GetSecilenKurulAksiyon_Result">
+          <ScalarProperty Name="KriterNo" ColumnName="KriterNo" />
+          <ScalarProperty Name="GorusulenKonu" ColumnName="GorusulenKonu" />
+          <ScalarProperty Name="MevcutDurumu" ColumnName="MevcutDurumu" />
+          <ScalarProperty Name="SorumluPersNo" ColumnName="SorumluPersNo" />
+          <ScalarProperty Name="GundemeTarihi" ColumnName="GundemeTarihi" />
+          <ScalarProperty Name="HedefTarihi" ColumnName="HedefTarihi" />
+          <ScalarProperty Name="IsBitisTarihi" ColumnName="IsBitisTarihi" />
+          <ScalarProperty Name="KayitSahibiPersNo" ColumnName="KayitSahibiPersNo" />
+          <ScalarProperty Name="SorumluPersoneller" ColumnName="SorumluPersoneller" />
+          <ScalarProperty Name="AksiyonSonucu" ColumnName="AksiyonSonucu" />
+          <ScalarProperty Name="Gelisme" ColumnName="Gelisme" />
+          <ScalarProperty Name="Sonuc" ColumnName="Sonuc" />
+          <ScalarProperty Name="SorumluPers" ColumnName="SorumluPers" />
+          <ScalarProperty Name="PlanKurulu" ColumnName="PlanKurulu" />
+          <ScalarProperty Name="AksiyonID" ColumnName="AksiyonID" />
+          <ScalarProperty Name="KurulID" ColumnName="KurulID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetSecilenKurulDosya" FunctionName="Model.Store.sp_GetSecilenKurulDosya">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Model.sp_GetSecilenKurulDosya_Result">
+          <ScalarProperty Name="KurulID" ColumnName="KurulID" />
+          <ScalarProperty Name="DosyaID" ColumnName="DosyaID" />
+          <ScalarProperty Name="YukleyenKisi" ColumnName="YukleyenKisi" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="DosyaAdi" ColumnName="DosyaAdi" />
+          <ScalarProperty Name="DosyaYeniAdi" ColumnName="DosyaYeniAdi" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

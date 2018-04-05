@@ -1,0 +1,79 @@
+﻿@model IEnumerable<KurulTakipSistemi.Models.sp_GetSecilenKurulDosya_Result>
+@{ ViewBag.SolMenuIdUret = Request.RequestContext.RouteData.Values["id"];
+    ViewBag.link = Html.ActionLink("Yeni Dosya", "Create", 
+        new { id = Request.RequestContext.RouteData.Values["id"] });
+}
+
+<script>
+    document.getElementById("s2-document").disabled = true;
+    $("#menu3").addClass("active");
+</script>
+
+<table class="table table-hover table-striped">
+    <tr>
+        <th>#</th>
+        <th>@Html.DisplayNameFor(m => m.YukleyenKisi)</th>
+        <th>@Html.DisplayNameFor(m => m.Aciklama)</th>
+        <th>@Html.DisplayNameFor(m => m.DosyaAdi)</th>
+        <th></th>
+    </tr>
+    @if (Model != null)
+    {
+        int sayac=1;
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@sayac</td>
+                <td>@Html.Label(item.YukleyenKisi)</td>
+                <td>@Html.Label(item.Aciklama)</td>
+                <td><label for="dosyaAdi">@item.DosyaAdi</label></td>
+                <td>
+                    @Html.ActionLink("İndir", "Download", new { ImageName = item.DosyaYeniAdi })
+                    @Html.ActionLink("Düzenle", "Edit", new { id = item.DosyaID })
+                    <a href="#" class="delete-user-row-with-ajax-button" data-type="@sayac - @item.DosyaAdi"
+                        data-deger="@item.DosyaID">Sil</a>
+                </td>
+            </tr>
+            sayac++;
+        }
+    }
+</table>
+
+<script src="~/Scripts/bootstrap-confirm-delete.js"></script>
+<script src="~/Scripts/deleteSettings.js"></script>
+
+<script>
+    $('.delete-user-row-with-ajax-button').bootstrap_confirm_delete(
+        {
+            heading: "Dosya",
+            callback: function (event) {
+                $.ajax(
+                {
+                    dataType: 'text',
+                    url: "/Dosyalar/DeleteConfirmedAjax",
+                    data: { id: $(event.data.originalObject).data('deger') },
+                    success: function (result) {
+                        var button = event.data.originalObject;
+                        if (result == false) {
+                            $("#hata").hide();
+                            $("#hata").text("Silme islemi gerceklestirilemedi.");
+                            $("#hata").show("slow");
+                            setTimeout(function () {
+                                $("#hata").hide("slow");
+                            }, 4000);
+                        }
+                        else { button.closest('tr').remove();
+                        }
+                    },
+                    error: function () {
+                        $("#hata").hide();
+                        document.getElementById("hata").innerHTML =
+                            "Silme islemi gerceklestirilemedi."
+                        $("#hata").show("slow");
+                        setTimeout(function () {
+                            $("#hata").hide("slow");
+                        }, 4000);
+                    }});
+            }});
+</script>
+

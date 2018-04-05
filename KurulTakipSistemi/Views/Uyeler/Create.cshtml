@@ -1,0 +1,25 @@
+﻿@model KurulTakipSistemi.Models.YeniUye
+@{
+    ViewBag.Title = "Create";
+    ViewBag.SolMenuIdUret = Request.RequestContext.RouteData.Values["id"];
+}
+<script>
+    $("#menu2").addClass("active");
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div style="margin-top:20px;width:600px;">
+        <select class="js-example-data-ajax form-control" name="sicilNo">
+            <option value="0" selected="selected">Eklenecek Üye Ara</option>
+        </select>
+        @Html.ValidationMessageFor(model => model.sicilNo, "", new { @class = "text-danger" })
+    </div>
+    <input hidden="hidden" name="kurulId" value="@Request.RequestContext.RouteData.Values["id"]" />
+    <input type="submit" value="Ekle" class="btn btn-default" />
+}
+@Html.ActionLink("Geri Git", "Index", "Uyeler", 
+new { id = @Request.RequestContext.RouteData.Values["id"] }, null)

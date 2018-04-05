@@ -1,0 +1,128 @@
+﻿@model KurulTakipSistemi.Models.Aksiyonlar
+
+@{
+    ViewBag.Title = "Delete";
+    ViewBag.SolMenuIdUret = Model.KurulID;
+}
+
+<script>
+    $("#menu4").addClass("active");
+</script>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.KriterNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KriterNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GorusulenKonu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GorusulenKonu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MevcutDurumu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MevcutDurumu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SorumluPersNo)
+        </dt>
+
+        <dd>
+            @ViewBag.sorPerIsim
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GundemeTarihi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GundemeTarihi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HedefTarihi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HedefTarihi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsBitisTarihi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsBitisTarihi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KayitSahibiPersNo)
+        </dt>
+
+        <dd>
+            @ViewBag.sahibiIsim
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SorumluPersoneller)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SorumluPersoneller)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AksiyonSonucu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AksiyonSonucu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gelisme)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gelisme)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sonuc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sonuc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kurullar.Adi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kurullar.Adi)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-default" /> |
+            @Html.ActionLink("Geri Git", "Index", "Aksiyonlar", new { id = @Model.KurulID }, null)
+        </div>
+    }
+</div>

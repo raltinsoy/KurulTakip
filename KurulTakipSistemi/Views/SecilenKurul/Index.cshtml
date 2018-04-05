@@ -1,0 +1,117 @@
+﻿@model KurulTakipSistemi.Models.sp_GetSecilenKurulGenel_Result
+
+@{ ViewBag.SolMenuIdUret = Request.RequestContext.RouteData.Values["id"]; }
+
+<script>
+    $("#menu1").addClass("active");
+</script>
+
+@if (@Model != null)
+{
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal" style="margin-top:10px;">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.KurulID)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Adi, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Adi, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Adi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.BaskanAdSoyad,
+                htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select class="js-example-data-ajax form-control" name="Baskani">
+                        <option value="@ViewBag.baskanId" selected="selected">@Model.BaskanAdSoyad</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.BaskanAdSoyad, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SponsorAdSoyad,
+                htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select class="js-example-data-ajax form-control" name="Sponsoru">
+                        <option value="@ViewBag.sponsorId" selected="selected">@Model.SponsorAdSoyad</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.SponsorAdSoyad, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.RaportorAdSoyad, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select class="js-example-data-ajax form-control" name="Raportor">
+                        <option value="@ViewBag.raportorId" selected="selected">@Model.RaportorAdSoyad</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.RaportorAdSoyad, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.BasTarihi, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.BasTarihi, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.BasTarihi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Amac, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Amac, 4, 5, new { @class = "form-control", @style = "max-width:600px;" })
+                    @Html.ValidationMessageFor(model => model.Amac, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Gundem, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Gundem, 3, 5, new { @class = "form-control", @style = "max-width:600px;" })
+                    @Html.ValidationMessageFor(model => model.Gundem, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Sorumluluklar, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Sorumluluklar, 3, 5, new { @class = "form-control", @style = "max-width:600px;" })
+                    @Html.ValidationMessageFor(model => model.Sorumluluklar, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IlgiliUstSurec, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.IlgiliUstSurec, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IlgiliUstSurec, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Politika, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Politika, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Politika, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Kaydet" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    }
+}
+
+<script>$("#BasTarihi").datepicker({ dateFormat: 'dd/mm/yy' });</script>

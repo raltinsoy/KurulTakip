@@ -1,0 +1,78 @@
+﻿@model SelectList
+@{
+    ViewBag.SolMenuIdUret = Request.RequestContext.RouteData.Values["id"];
+    @* Gönderlen id, seçilen kurulun id si *@
+    ViewBag.link = Html.ActionLink("Yeni Üye", "Create", 
+        new { id = Request.RequestContext.RouteData.Values["id"] });
+}
+
+<script>
+    document.getElementById("s2-document").disabled = true;
+    $("#menu2").addClass("active");
+</script>
+
+<table class="table table-hover table-striped">
+    <tr>
+        <th>#</th>
+        <th>İsim</th>
+        <th></th>
+    </tr>
+    @if (Model != null)
+    {
+        int sayac = 1;
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@sayac</td>
+                <td>@Html.Label(item.Text)</td>
+                <td>
+                    <a href="#" class="delete-user-row-with-ajax-button" 
+                       data-type="@item.Text" data-deger="@item.Value">Sil</a>
+                </td>
+            </tr>
+            sayac++;
+        }
+    }
+</table>
+
+<script src="~/Scripts/bootstrap-confirm-delete.js"></script>
+<script src="~/Scripts/deleteSettings.js"></script>
+
+<script>
+    $('.delete-user-row-with-ajax-button').bootstrap_confirm_delete(
+        {
+            heading: "Uye",
+            callback: function (event) {
+                $.ajax(
+                {
+                    url: '/Uyeler/DeleteConfirmedAjax',
+                    dataType: 'text',
+                    data: { id: $(event.data.originalObject).data('deger') }, // data-deger
+                    success: function (result) {
+                        var button = event.data.originalObject;
+                        if (result == false) {
+                            $("#hata").hide();
+                            $("#hata").text("Silme islemi gerceklestirilemedi.");
+                            $("#hata").show("slow");
+                            setTimeout(function () {
+                                $("#hata").hide("slow");
+                            }, 4000);
+                        }
+                        else {
+                            button.closest('tr').remove();
+                        }
+                    },
+                    error: function () {
+                        $("#hata").hide();
+                        document.getElementById("hata").innerHTML = "Silme islemi gerceklestirilemedi."
+                        $("#hata").show("slow");
+                        setTimeout(function () {
+                            $("#hata").hide("slow");
+                        }, 4000);
+
+                    }
+                });
+            }
+        }
+    );
+</script>

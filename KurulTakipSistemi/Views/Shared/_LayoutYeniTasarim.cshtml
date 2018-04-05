@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/select2.full.js"></script>
+    <link href="~/Content/select2.min.css" rel="stylesheet" />
+    <link href="~/Content/s2-docs.css" id="s2-document" rel="stylesheet" />
+
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/dashboard.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Gecis</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Kurul Takip Sistemi</a>
+                <a class="navbar-brand" href="/Kurul">Kurul Listesi</a>
+                <a class="navbar-brand" href="/Kurul/Create">Yeni Kurul</a>
+            </div>
+
+        </div>
+    </nav>
+
+    @if ((Request.RequestContext.RouteData.Values["controller"].Equals("Kurul")
+                && (Request.RequestContext.RouteData.Values["action"].Equals("Index") || 
+                        Request.RequestContext.RouteData.Values["action"].Equals("Create"))) ||
+        Request.RequestContext.RouteData.Values["controller"].Equals("Home"))
+    {
+        <div class="col-sm-9 col-md-10 col-md-offset-1 main">
+            <div>
+                @RenderBody()
+            </div>
+        </div>
+    }
+    else
+    {
+        <div id="solMenu" class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3 col-md-2 sidebar">
+                    <ul class="nav nav-sidebar">
+                        <li id="menu1"><a href="/SecilenKurul/Index/@ViewBag.SolMenuIdUret">Genel Bilgiler<span class="sr-only">(current)</span></a></li>
+                        <li id="menu2"><a href="/Uyeler/Index/@ViewBag.SolMenuIdUret">Üyeler</a></li>
+                        <li id="menu3"><a href="/Dosyalar/Index/@ViewBag.SolMenuIdUret">Kurul Dosyaları</a></li>
+                        <li id="menu4"><a href="/Aksiyonlar/Index/@ViewBag.SolMenuIdUret">İyileştirme Planı</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h3 class="page-header">@ViewBag.link</h3>
+            <div id="hata" class="alert alert-danger" hidden="hidden" style="position:absolute;right:40px;top:2px;" role="alert"></div>
+            <div>
+                @RenderBody()
+            </div>
+        </div>
+    }
+    
+    
+
+</body>
+</html>
+
+<script src="~/Scripts/MyScript.js"></script>
+
+<script>
+    (function (factory) {
+        if (typeof define === "function" && define.amd) {
+
+            // AMD. Register as an anonymous module.
+            define(["../widgets/datepicker"], factory);
+        } else {
+
+            // Browser globals
+            factory(jQuery.datepicker);
+        }
+    }(function (datepicker) {
+
+        datepicker.regional.tr = {
+            closeText: "kapat",
+            prevText: "&#x3C;geri",
+            nextText: "ileri&#x3e",
+            currentText: "bugün",
+            monthNames: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran",
+            "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
+            monthNamesShort: ["Oca", "Şub", "Mar", "Nis", "May", "Haz",
+            "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"],
+            dayNames: ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"],
+            dayNamesShort: ["Pz", "Pt", "Sa", "Ça", "Pe", "Cu", "Ct"],
+            dayNamesMin: ["Pz", "Pt", "Sa", "Ça", "Pe", "Cu", "Ct"],
+            weekHeader: "Hf",
+            dateFormat: "mm.dd.yy",
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ""
+        };
+        datepicker.setDefaults(datepicker.regional.tr);
+
+        return datepicker.regional.tr;
+
+    }));
+</script>

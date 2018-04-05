@@ -1,0 +1,49 @@
+﻿@model KurulTakipSistemi.Models.sp_GetDosyaBilgisi_Result
+@{ ViewBag.Title = "Delete";
+   ViewBag.SolMenuIdUret = Model.KurulID;
+}
+
+<script>
+    $("#menu3").addClass("active");
+</script>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.KurulAdi)</dt>
+        <dd>@Html.DisplayFor(model => model.KurulAdi)</dd>
+        <dt>@Html.DisplayNameFor(model => model.DosyaAdi)</dt>
+        <dd>@Html.DisplayFor(model => model.DosyaAdi)</dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdSoyad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdSoyad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Aciklama)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Aciklama)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tur)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-default" /> |
+            @Html.ActionLink("Geri Git", "Index", "Dosyalar", new { id = @Model.KurulID }, null)
+        </div>
+    }
+</div>
